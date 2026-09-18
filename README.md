@@ -75,11 +75,10 @@ El proyecto está unificado bajo **un único archivo `pom.xml`** en la raíz:
 ```text
 Taller UDP/
 ├── pom.xml                                      # Único POM Maven central del proyecto
-├── .gitignore                                   # Reglas de exclusión de Git unificadas
 ├── src/
 │   ├── main/java/kilometros/
 │   │   ├── Main.java                            # Lanzador central interactivo
-│   │   ├── servidor/                            # Módulo Servidor UDP
+│   │   ├── servidor/                            # Módulo Servidor
 │   │   │   ├── Main.java                        # Composition Root del servidor
 │   │   │   ├── dominio/
 │   │   │   │   ├── enums/                       # EstadoServidor, TipoRespuesta
@@ -97,7 +96,7 @@ Taller UDP/
 │   │   │       ├── gui/                         # ServidorFrame (Swing)
 │   │   │       └── udp/                         # ReceptorPeticionesUdp
 │   │   │
-│   │   └── cliente/                             # Módulo Cliente UDP
+│   │   └── cliente/                             # Módulo Cliente
 │   │       ├── Main.java                        # Composition Root del cliente
 │   │       ├── dominio/
 │   │       │   ├── enums/                       # EstadoConexion
@@ -137,9 +136,9 @@ Desde la raíz del proyecto:
 mvn exec:java
 ```
 Esto abrirá una ventana que permite elegir con un solo clic:
-- **1. Iniciar Servidor UDP**
-- **2. Iniciar Cliente UDP**
-- **3. Iniciar Ambos (Prueba Rápida)**: Abre las dos interfaces gráficas simultáneamente para probar de inmediato.
+- **1. Iniciar Servidor**
+- **2. Iniciar Cliente**
+- **3. Iniciar Ambos**: Abre las dos interfaces gráficas simultáneamente para probar de inmediato.
 
 También es posible arrancar directamente por línea de comandos pasando el argumento deseado:
 ```bash

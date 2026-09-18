@@ -47,7 +47,7 @@ public class ServidorFrame extends JFrame implements ObservadorServidor {
     private JTextArea cajaLog;
 
     public ServidorFrame(GestionarServidorInputPort gestionarServidorPort) {
-        super("Servidor UDP - Conversión Km a Millas (Arquitectura Hexagonal)");
+        super("Servidor");
         this.gestionarServidorPort = Objects.requireNonNull(gestionarServidorPort, "El puerto de gestión es obligatorio.");
         initComponents();
         this.setLocationRelativeTo(null);
@@ -60,39 +60,43 @@ public class ServidorFrame extends JFrame implements ObservadorServidor {
         setLayout(new BorderLayout(10, 10));
 
         // Título superior
-        JLabel lblTitulo = new JLabel("SERVIDOR CONVERSIÓN (KM A MILLAS) - UDP", SwingConstants.CENTER);
-        lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 18));
-        lblTitulo.setBorder(BorderFactory.createEmptyBorder(15, 10, 10, 10));
+        JLabel lblTitulo = new JLabel("Servidor", SwingConstants.CENTER);
+        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        lblTitulo.setBorder(BorderFactory.createEmptyBorder(15, 10, 5, 10));
         add(lblTitulo, BorderLayout.NORTH);
 
         JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 
-        // Pestaña 1: CONEXIÓN
+        // Pestaña 1: Conexión
         JPanel panelConexion = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(8, 12, 8, 12);
+        gbc.insets = new Insets(10, 15, 10, 15);
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        JLabel lblIP = new JLabel("DIRECCIÓN IP:");
-        lblIP.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        JLabel lblIP = new JLabel("Dirección IP:");
+        lblIP.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         campoIP = new JTextField(RedUtil.obtenerIpLocal(), 15);
+        campoIP.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         campoIP.setEditable(false);
 
-        JLabel lblPuerto = new JLabel("PUERTO DE RED:");
-        lblPuerto.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        JLabel lblPuerto = new JLabel("Puerto:");
+        lblPuerto.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         campoPuerto = new JTextField("9007", 15);
+        campoPuerto.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 
-        JLabel lblEstadoTitulo = new JLabel("ESTADO:");
-        lblEstadoTitulo.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        JLabel lblEstadoTitulo = new JLabel("Estado:");
+        lblEstadoTitulo.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         txtEstado = new JLabel("OFF LINE");
-        txtEstado.setFont(new Font("Tahoma", Font.BOLD, 14));
-        txtEstado.setForeground(Color.RED);
+        txtEstado.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        txtEstado.setForeground(new Color(211, 47, 47));
 
-        btnIniciar = new JButton("INICIAR");
-        btnIniciar.setFont(new Font("Tahoma", Font.BOLD, 14));
-        btnIniciar.setForeground(new Color(0, 153, 51));
-        btnIniciar.setPreferredSize(new Dimension(140, 35));
+        btnIniciar = new JButton("Iniciar");
+        btnIniciar.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        btnIniciar.setForeground(new Color(46, 125, 50));
+        btnIniciar.setPreferredSize(new Dimension(130, 34));
+        btnIniciar.setFocusPainted(false);
         btnIniciar.addActionListener(evt -> alternarServidor());
 
         // Layout pestaña 1
@@ -117,25 +121,27 @@ public class ServidorFrame extends JFrame implements ObservadorServidor {
         gbc.anchor = GridBagConstraints.EAST;
         panelConexion.add(btnIniciar, gbc);
 
-        tabbedPane.addTab("CONEXIÓN", panelConexion);
+        tabbedPane.addTab("Conexión", panelConexion);
 
-        // Pestaña 2: LOG DE CONEXIONES
+        // Pestaña 2: Log de Conexiones
         JPanel panelLog = new JPanel(new BorderLayout(8, 8));
         panelLog.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         cajaLog = new JTextArea();
         cajaLog.setEditable(false);
-        cajaLog.setFont(new Font("Monospaced", Font.PLAIN, 12));
+        cajaLog.setFont(new Font("Consolas", Font.PLAIN, 12));
         JScrollPane scrollLog = new JScrollPane(cajaLog);
         panelLog.add(scrollLog, BorderLayout.CENTER);
 
         JPanel panelBotonLog = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        JButton btnLimpiar = new JButton("LIMPIAR LOG");
+        JButton btnLimpiar = new JButton("Limpiar Log");
+        btnLimpiar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        btnLimpiar.setFocusPainted(false);
         btnLimpiar.addActionListener(evt -> cajaLog.setText(""));
         panelBotonLog.add(btnLimpiar);
         panelLog.add(panelBotonLog, BorderLayout.SOUTH);
 
-        tabbedPane.addTab("LOG DE CONEXIONES", panelLog);
+        tabbedPane.addTab("Log de Conexiones", panelLog);
 
         add(tabbedPane, BorderLayout.CENTER);
     }
@@ -175,15 +181,15 @@ public class ServidorFrame extends JFrame implements ObservadorServidor {
         SwingUtilities.invokeLater(() -> {
             if (nuevoEstado == EstadoServidor.ACTIVO) {
                 txtEstado.setText("ONLINE");
-                txtEstado.setForeground(new Color(0, 153, 51));
-                btnIniciar.setText("DETENER");
-                btnIniciar.setForeground(Color.RED);
+                txtEstado.setForeground(new Color(46, 125, 50));
+                btnIniciar.setText("Detener");
+                btnIniciar.setForeground(new Color(211, 47, 47));
                 campoPuerto.setEditable(false);
             } else {
                 txtEstado.setText("OFF LINE");
-                txtEstado.setForeground(Color.RED);
-                btnIniciar.setText("INICIAR");
-                btnIniciar.setForeground(new Color(0, 153, 51));
+                txtEstado.setForeground(new Color(211, 47, 47));
+                btnIniciar.setText("Iniciar");
+                btnIniciar.setForeground(new Color(46, 125, 50));
                 campoPuerto.setEditable(true);
             }
         });

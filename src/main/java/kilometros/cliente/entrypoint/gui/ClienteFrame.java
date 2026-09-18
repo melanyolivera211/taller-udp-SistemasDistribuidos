@@ -63,7 +63,7 @@ public class ClienteFrame extends JFrame implements ObservadorCliente {
     public ClienteFrame(
             ConvertirKmInputPort convertirKmPort,
             GestionarConexionInputPort gestionarConexionPort) {
-        super("Cliente UDP - Conversión Km a Millas (Arquitectura Hexagonal)");
+        super("Cliente");
         this.convertirKmPort = Objects.requireNonNull(convertirKmPort, "El puerto de conversión es obligatorio.");
         this.gestionarConexionPort = Objects.requireNonNull(gestionarConexionPort, "El puerto de gestión es obligatorio.");
 
@@ -78,46 +78,50 @@ public class ClienteFrame extends JFrame implements ObservadorCliente {
         setLayout(new BorderLayout(10, 10));
 
         // Título superior
-        JLabel lblTitulo = new JLabel("CLIENTE CONVERSIÓN (KM A MILLAS) - UDP", SwingConstants.CENTER);
-        lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 18));
-        lblTitulo.setBorder(BorderFactory.createEmptyBorder(15, 10, 10, 10));
+        JLabel lblTitulo = new JLabel("Cliente", SwingConstants.CENTER);
+        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        lblTitulo.setBorder(BorderFactory.createEmptyBorder(15, 10, 5, 10));
         add(lblTitulo, BorderLayout.NORTH);
 
         JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 
-        // Pestaña 1: OPERACIONES (Conexión + Conversión)
+        // Pestaña 1: Operaciones (Conexión + Conversión)
         JPanel panelOperaciones = new JPanel(new BorderLayout(10, 10));
         panelOperaciones.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         // Subpanel Superior: Conexión al Servidor
         JPanel panelConexion = new JPanel(new GridBagLayout());
         panelConexion.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createEtchedBorder(), "Parámetros del Servidor UDP",
-                TitledBorder.LEFT, TitledBorder.TOP, new Font("Tahoma", Font.BOLD, 12)
+                BorderFactory.createEtchedBorder(), "Conexión con el Servidor",
+                TitledBorder.LEFT, TitledBorder.TOP, new Font("Segoe UI", Font.BOLD, 12)
         ));
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(6, 10, 6, 10);
+        gbc.insets = new Insets(8, 12, 8, 12);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        JLabel lblIP = new JLabel("IP SERVIDOR:");
-        lblIP.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        JLabel lblIP = new JLabel("IP Servidor:");
+        lblIP.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         campoIP = new JTextField("127.0.0.1", 12);
+        campoIP.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 
-        JLabel lblPuerto = new JLabel("PUERTO:");
-        lblPuerto.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        JLabel lblPuerto = new JLabel("Puerto:");
+        lblPuerto.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         campoPuerto = new JTextField("9007", 6);
+        campoPuerto.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 
-        JLabel lblEstadoTitulo = new JLabel("ESTADO:");
-        lblEstadoTitulo.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        JLabel lblEstadoTitulo = new JLabel("Estado:");
+        lblEstadoTitulo.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         txtEstado = new JLabel("DESCONECTADO");
-        txtEstado.setFont(new Font("Tahoma", Font.BOLD, 13));
-        txtEstado.setForeground(Color.RED);
+        txtEstado.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        txtEstado.setForeground(new Color(211, 47, 47));
 
-        btnConectar = new JButton("CONECTAR");
-        btnConectar.setFont(new Font("Tahoma", Font.BOLD, 13));
-        btnConectar.setForeground(new Color(0, 153, 51));
-        btnConectar.setPreferredSize(new Dimension(140, 32));
+        btnConectar = new JButton("Conectar");
+        btnConectar.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        btnConectar.setForeground(new Color(46, 125, 50));
+        btnConectar.setPreferredSize(new Dimension(130, 32));
+        btnConectar.setFocusPainted(false);
         btnConectar.addActionListener(evt -> alternarConexion());
 
         gbc.gridx = 0; gbc.gridy = 0;
@@ -143,44 +147,46 @@ public class ClienteFrame extends JFrame implements ObservadorCliente {
         // Subpanel Central: Conversión de Kilómetros a Millas
         JPanel panelConversion = new JPanel(new GridBagLayout());
         panelConversion.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createEtchedBorder(), "Conversión de Distancia",
-                TitledBorder.LEFT, TitledBorder.TOP, new Font("Tahoma", Font.BOLD, 12)
+                BorderFactory.createEtchedBorder(), "Conversión",
+                TitledBorder.LEFT, TitledBorder.TOP, new Font("Segoe UI", Font.BOLD, 12)
         ));
 
         GridBagConstraints gbcC = new GridBagConstraints();
-        gbcC.insets = new Insets(8, 10, 8, 10);
+        gbcC.insets = new Insets(8, 12, 8, 12);
         gbcC.fill = GridBagConstraints.HORIZONTAL;
 
-        JLabel lblKm = new JLabel("DISTANCIA EN KM:");
-        lblKm.setFont(new Font("Tahoma", Font.BOLD, 13));
-        campoKm = new JTextField("10.0", 12);
-        campoKm.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        JLabel lblKm = new JLabel("Distancia (Km):");
+        lblKm.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        campoKm = new JTextField("", 12);
+        campoKm.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 
-        btnConvertir = new JButton("CONVERTIR");
-        btnConvertir.setFont(new Font("Tahoma", Font.BOLD, 13));
+        btnConvertir = new JButton("Convertir");
+        btnConvertir.setFont(new Font("Segoe UI", Font.BOLD, 13));
         btnConvertir.setEnabled(false);
-        btnConvertir.setPreferredSize(new Dimension(130, 32));
+        btnConvertir.setPreferredSize(new Dimension(120, 32));
+        btnConvertir.setFocusPainted(false);
         btnConvertir.addActionListener(evt -> ejecutarConversion());
 
-        btnLimpiar = new JButton("LIMPIAR");
-        btnLimpiar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        btnLimpiar.setPreferredSize(new Dimension(100, 32));
+        btnLimpiar = new JButton("Limpiar");
+        btnLimpiar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        btnLimpiar.setPreferredSize(new Dimension(90, 32));
+        btnLimpiar.setFocusPainted(false);
         btnLimpiar.addActionListener(evt -> limpiarCampos());
 
-        JLabel lblMillas = new JLabel("RESULTADO (MILLAS):");
-        lblMillas.setFont(new Font("Tahoma", Font.BOLD, 13));
+        JLabel lblMillas = new JLabel("Resultado (Millas):");
+        lblMillas.setFont(new Font("Segoe UI", Font.BOLD, 13));
         campoMillas = new JTextField(12);
         campoMillas.setEditable(false);
-        campoMillas.setFont(new Font("Tahoma", Font.BOLD, 16));
-        campoMillas.setForeground(new Color(0, 102, 204));
+        campoMillas.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        campoMillas.setForeground(new Color(21, 101, 192));
 
-        JLabel lblMensaje = new JLabel("DETALLE SERVIDOR:");
-        lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        JLabel lblMensaje = new JLabel("Mensaje:");
+        lblMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         txtMensajeServidor = new JTextArea(2, 25);
         txtMensajeServidor.setEditable(false);
         txtMensajeServidor.setLineWrap(true);
         txtMensajeServidor.setWrapStyleWord(true);
-        txtMensajeServidor.setFont(new Font("Tahoma", Font.ITALIC, 12));
+        txtMensajeServidor.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         txtMensajeServidor.setBackground(panelConversion.getBackground());
         JScrollPane scrollDetalle = new JScrollPane(txtMensajeServidor);
         scrollDetalle.setBorder(BorderFactory.createEtchedBorder());
@@ -213,25 +219,27 @@ public class ClienteFrame extends JFrame implements ObservadorCliente {
 
         panelOperaciones.add(panelConversion, BorderLayout.CENTER);
 
-        tabbedPane.addTab("OPERACIONES", panelOperaciones);
+        tabbedPane.addTab("Operaciones", panelOperaciones);
 
-        // Pestaña 2: LOG DE EVENTOS
+        // Pestaña 2: Log de Eventos
         JPanel panelLog = new JPanel(new BorderLayout(8, 8));
         panelLog.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         cajaLog = new JTextArea();
         cajaLog.setEditable(false);
-        cajaLog.setFont(new Font("Monospaced", Font.PLAIN, 12));
+        cajaLog.setFont(new Font("Consolas", Font.PLAIN, 12));
         JScrollPane scrollLog = new JScrollPane(cajaLog);
         panelLog.add(scrollLog, BorderLayout.CENTER);
 
         JPanel panelBotonLog = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        JButton btnLimpiarLog = new JButton("LIMPIAR LOG");
+        JButton btnLimpiarLog = new JButton("Limpiar Log");
+        btnLimpiarLog.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        btnLimpiarLog.setFocusPainted(false);
         btnLimpiarLog.addActionListener(evt -> cajaLog.setText(""));
         panelBotonLog.add(btnLimpiarLog);
         panelLog.add(panelBotonLog, BorderLayout.SOUTH);
 
-        tabbedPane.addTab("LOG DE EVENTOS", panelLog);
+        tabbedPane.addTab("Log de Eventos", panelLog);
 
         add(tabbedPane, BorderLayout.CENTER);
     }
@@ -348,17 +356,17 @@ public class ClienteFrame extends JFrame implements ObservadorCliente {
         SwingUtilities.invokeLater(() -> {
             if (nuevoEstado == EstadoConexion.CONECTADO) {
                 txtEstado.setText("CONECTADO");
-                txtEstado.setForeground(new Color(0, 153, 51));
-                btnConectar.setText("DESCONECTAR");
-                btnConectar.setForeground(Color.RED);
+                txtEstado.setForeground(new Color(46, 125, 50));
+                btnConectar.setText("Desconectar");
+                btnConectar.setForeground(new Color(211, 47, 47));
                 campoIP.setEditable(false);
                 campoPuerto.setEditable(false);
                 btnConvertir.setEnabled(true);
             } else {
                 txtEstado.setText("DESCONECTADO");
-                txtEstado.setForeground(Color.RED);
-                btnConectar.setText("CONECTAR");
-                btnConectar.setForeground(new Color(0, 153, 51));
+                txtEstado.setForeground(new Color(211, 47, 47));
+                btnConectar.setText("Conectar");
+                btnConectar.setForeground(new Color(46, 125, 50));
                 campoIP.setEditable(true);
                 campoPuerto.setEditable(true);
                 btnConvertir.setEnabled(false);

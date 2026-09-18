@@ -41,7 +41,7 @@ class IntegracionEndToEndTest {
 
     @BeforeEach
     void setUp() {
-        // 1. Inicializar Servidor UDP Real
+        // 1. Inicializar Servidor
         kilometros.servidor.adaptadores.red.CanalUdp canalServidor = new kilometros.servidor.adaptadores.red.CanalUdp();
         AdaptadorNotificacionEvento notificadorServidor = new AdaptadorNotificacionEvento();
         UdpNetworkMapper networkMapper = new UdpNetworkMapper();
@@ -60,7 +60,7 @@ class IntegracionEndToEndTest {
         gestionarServidorPort = new GestionarServidorService(controladorRed, notificadorServidor);
         gestionarServidorPort.iniciarServidor(PUERTO_E2E);
 
-        // 2. Inicializar Cliente UDP Real
+        // 2. Inicializar Cliente
         CanalUdp canalCliente = new CanalUdp();
         ProtocoloUdpMapper protocoloMapper = new ProtocoloUdpMapper();
         AdaptadorClienteUdp clienteUdpPort = new AdaptadorClienteUdp(canalCliente, protocoloMapper, 3000);

@@ -55,7 +55,7 @@ public final class Main {
     }
 
     private static void mostrarVentanaLanzador() {
-        JFrame frame = new JFrame("Lanzador UDP - Conversión Km a Millas");
+        JFrame frame = new JFrame("Conversión de Kilómetros a Millas");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(460, 320);
         frame.setResizable(false);
@@ -66,12 +66,12 @@ public final class Main {
         JPanel panelHeader = new JPanel(new GridLayout(2, 1, 4, 4));
         panelHeader.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20));
 
-        JLabel lblTitulo = new JLabel("SISTEMAS DISTRIBUIDOS", SwingConstants.CENTER);
-        lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+        JLabel lblTitulo = new JLabel("Conversión de Kilómetros a Millas", SwingConstants.CENTER);
+        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 17));
         lblTitulo.setForeground(new Color(33, 37, 41));
 
-        JLabel lblSubtitulo = new JLabel("Taller UDP: Conversión de Kilómetros a Millas", SwingConstants.CENTER);
-        lblSubtitulo.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        JLabel lblSubtitulo = new JLabel("Seleccione una opción:", SwingConstants.CENTER);
+        lblSubtitulo.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         lblSubtitulo.setForeground(new Color(108, 117, 125));
 
         panelHeader.add(lblTitulo);
@@ -82,19 +82,19 @@ public final class Main {
         JPanel panelBotones = new JPanel(new GridLayout(3, 1, 10, 12));
         panelBotones.setBorder(BorderFactory.createEmptyBorder(5, 35, 20, 35));
 
-        JButton btnServidor = crearBoton("1. Iniciar Servidor UDP", new Color(0, 123, 255));
+        JButton btnServidor = crearBoton("1. Iniciar Servidor", new Color(0, 123, 255));
         btnServidor.addActionListener(e -> {
             kilometros.servidor.Main.main(new String[0]);
             frame.dispose();
         });
 
-        JButton btnCliente = crearBoton("2. Iniciar Cliente UDP", new Color(40, 167, 69));
+        JButton btnCliente = crearBoton("2. Iniciar Cliente", new Color(40, 167, 69));
         btnCliente.addActionListener(e -> {
             kilometros.cliente.Main.main(new String[0]);
             frame.dispose();
         });
 
-        JButton btnAmbos = crearBoton("3. Iniciar Ambos (Prueba Rápida)", new Color(108, 117, 125));
+        JButton btnAmbos = crearBoton("3. Iniciar Ambos", new Color(108, 117, 125));
         btnAmbos.addActionListener(e -> {
             iniciarAmbos();
             frame.dispose();
@@ -125,7 +125,7 @@ public final class Main {
 
     private static JButton crearBoton(String texto, Color colorFondo) {
         JButton boton = new JButton(texto);
-        boton.setFont(new Font("Tahoma", Font.BOLD, 13));
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 13));
         boton.setPreferredSize(new Dimension(280, 42));
         boton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         boton.setFocusPainted(false);
