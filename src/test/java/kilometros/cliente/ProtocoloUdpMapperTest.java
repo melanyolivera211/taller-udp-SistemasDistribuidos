@@ -1,4 +1,4 @@
-package kilometros.cliente.cliente;
+package kilometros.cliente;
 
 import kilometros.cliente.adaptadores.red.ProtocoloUdpMapper;
 import kilometros.cliente.dominio.excepciones.RespuestaServidorException;

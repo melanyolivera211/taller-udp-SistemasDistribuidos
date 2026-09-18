@@ -1,4 +1,4 @@
-package kilometros.servidor.servidor;
+package kilometros.servidor;
 
 import kilometros.servidor.aplicacion.dto.ConvertirKmCommand;
 import kilometros.servidor.aplicacion.dto.ProcesarPeticionUdpCommand;

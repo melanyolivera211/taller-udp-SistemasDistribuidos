@@ -1,4 +1,4 @@
-package kilometros.servidor.servidor;
+package kilometros.servidor;
 
 import kilometros.servidor.adaptadores.red.AdaptadorControlServidorRed;
 import kilometros.servidor.adaptadores.red.AdaptadorNotificacionEvento;

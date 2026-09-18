@@ -1,4 +1,4 @@
-package kilometros.servidor.servidor;
+package kilometros.servidor;
 
 import kilometros.servidor.adaptadores.red.mapper.UdpNetworkMapper;
 import kilometros.servidor.adaptadores.red.response.UdpResponse;

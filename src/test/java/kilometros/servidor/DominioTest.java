@@ -1,4 +1,4 @@
-package kilometros.servidor.servidor;
+package kilometros.servidor;
 
 import kilometros.servidor.dominio.excepciones.DestinatarioInvalidoException;
 import kilometros.servidor.dominio.excepciones.DominioException;

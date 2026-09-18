@@ -1,4 +1,4 @@
-package kilometros.cliente.cliente;
+package kilometros.cliente;
 
 import kilometros.cliente.aplicacion.dto.ConectarCommand;
 import kilometros.cliente.aplicacion.dto.ConvertirKmCommand;

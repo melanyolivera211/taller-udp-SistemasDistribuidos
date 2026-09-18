@@ -56,7 +56,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.1</version>
                 <configuration>
-                    <mainClass>kilometros.servidor.Main</mainClass>
+                    <mainClass>kilometros.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>
@@ -64,10 +64,25 @@
 
     <profiles>
         <profile>
-            <id>servidor</id>
+            <id>lanzador</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.1.1</version>
+                        <configuration>
+                            <mainClass>kilometros.Main</mainClass>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>servidor</id>
             <build>
                 <plugins>
                     <plugin>

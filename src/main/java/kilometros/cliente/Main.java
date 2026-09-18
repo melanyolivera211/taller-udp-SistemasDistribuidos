@@ -1,4 +1,4 @@
-package kilometros.cliente.cliente;
+package kilometros.cliente;
 
 import kilometros.cliente.adaptadores.notificacion.AdaptadorNotificacionCliente;
 import kilometros.cliente.adaptadores.red.AdaptadorClienteUdp;

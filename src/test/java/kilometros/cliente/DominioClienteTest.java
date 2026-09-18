@@ -1,4 +1,4 @@
-package kilometros.cliente.cliente;
+package kilometros.cliente;
 
 import kilometros.cliente.dominio.excepciones.DestinoInvalidoException;
 import kilometros.cliente.dominio.excepciones.KilometrosInvalidosException;
