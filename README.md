@@ -5,6 +5,14 @@ Esta solución implementa el **Ejercicio 4 (Conversión de Kilómetros a Millas)
 
 ---
 
+## 📺 Video de Sustentación / Exposición
+
+> 🔗 **Enlace de la presentación en YouTube:** [https://youtu.be/nxlFFq_72Uw](https://youtu.be/nxlFFq_72Uw)
+> 
+> En este video se demuestra el funcionamiento del sistema en vivo (Cliente y Servidor), la comunicación mediante datagramas UDP, la Arquitectura Hexagonal aplicada al código y la ejecución de las pruebas automatizadas.
+
+---
+
 ## 🎯 Objetivo y Contexto
 
 - **Fórmula de Conversión**: $1\text{ km} = 0.621371\text{ millas}$
